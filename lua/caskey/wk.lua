@@ -43,7 +43,7 @@ end
 local function setup_config(config, add_opts)
   local wk = require "which-key"
   for _, wk_config in ipairs(config.wk) do
-    wk.register(wk_config[1], vim.tbl_extend("error", wk_config[2], add_opts))
+    wk.add(wk_config[1], vim.tbl_extend("error", wk_config[2], add_opts))
   end
 end
 
@@ -53,7 +53,7 @@ function M.setup(root)
   local config = internal.mk_config(root)
   local wk_configs = mk_wk_configs(config)
   for _, wk_config in ipairs(wk_configs) do
-    wk.register(wk_config[1], wk_config[2])
+    wk.add(wk_config[1], wk_config[2])
   end
   patch_autocommands(config)
   internal.setup_autocommands(config.autocommands, setup_config)
